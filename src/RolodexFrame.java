@@ -89,7 +89,7 @@ public class RolodexFrame extends JFrame {
                 } else if (i == 2) {
                     txt_info[i].setText(people.get(list.getSelectedIndex()).getAddress());
                 } else if (i == 3) {
-                    txt_info[i].setText(people.get(list.getSelectedIndex()).getFirstName());
+                    txt_info[i].setText(people.get(list.getSelectedIndex()).getPhoneNumber());
                 }
             }
         });
