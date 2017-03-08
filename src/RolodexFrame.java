@@ -64,22 +64,34 @@ public class RolodexFrame extends JFrame {
         clear.setBounds(510, 250, 150, 35);
         add(clear);
 
-
         list.setListData(people.toArray());
 
         list.setBounds(0, 0, 250, getHeight());
         add(list);
 
         save.addActionListener(e -> {
-            people.add(new Person(txt_info[0].getText(),txt_info[1].getText(),
-            txt_info[2].getText(),txt_info[3].getText()));
+            people.add(new Person(txt_info[0].getText(), txt_info[1].getText(),
+                    txt_info[2].getText(), txt_info[3].getText()));
 
-
-            for(int i = 0;i <txt_info.length;i++) {
+            for (int i = 0; i < txt_info.length; i++) {
                 txt_info[i].setText("");
             }
 
             list.setListData(people.toArray());
+        });
+
+        list.addListSelectionListener(e -> {
+            for (int i = 0; i < txt_info.length; i++) {
+                if(i == 0) {
+                    txt_info[i].setText(people.get(list.getSelectedIndex()).getFirstName());
+                } else if (i == 1) {
+                    txt_info[i].setText(people.get(list.getSelectedIndex()).getLastName());
+                } else if (i == 2) {
+                    txt_info[i].setText(people.get(list.getSelectedIndex()).getAddress());
+                } else if (i == 3) {
+                    txt_info[i].setText(people.get(list.getSelectedIndex()).getFirstName());
+                }
+            }
         });
 
         setVisible(true);

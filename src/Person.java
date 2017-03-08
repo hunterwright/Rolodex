@@ -2,10 +2,10 @@
  * Stores first name ,last name, addrsess, and phone number of contacts,
  */
 public class Person {
-    String firstName = "";
-    String lastName = "";
-    String phoneNumber = "";
-    String address = "";
+    private String firstName = "";
+    private String lastName = "";
+    private String phoneNumber = "";
+    private String address = "";
 
     public Person(String fName, String lName, String phoneNum, String address) {
         this.firstName = fName;
@@ -14,35 +14,35 @@ public class Person {
         this.address = address;
     }
 
-    private String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    private void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    private String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    private void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    private String getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    private void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    private String getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    private void setAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
