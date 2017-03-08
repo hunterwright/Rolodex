@@ -12,6 +12,9 @@ public class RolodexFrame extends JFrame {
     JButton save = new JButton("Save");
     JButton clear = new JButton("New");
 
+    JButton saveChanges = new JButton("Save Changes");
+    JButton deleteChanges = new JButton("Delete Changes");
+
     ArrayList<Person> people = new ArrayList<>();
 
     JList list = new JList<Person>();
@@ -64,6 +67,14 @@ public class RolodexFrame extends JFrame {
         clear.setBounds(510, 250, 150, 35);
         add(clear);
 
+        saveChanges.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        save.setBounds(350, 250, 150, 35);
+        add(save);
+
+        clear.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        clear.setBounds(510, 250, 150, 35);
+        add(clear);
+
         list.setListData(people.toArray());
 
         list.setBounds(0, 0, 250, getHeight());
@@ -87,12 +98,17 @@ public class RolodexFrame extends JFrame {
                 } else if (i == 1) {
                     txt_info[i].setText(people.get(list.getSelectedIndex()).getLastName());
                 } else if (i == 2) {
-                    txt_info[i].setText(people.get(list.getSelectedIndex()).getAddress());
-                } else if (i == 3) {
                     txt_info[i].setText(people.get(list.getSelectedIndex()).getPhoneNumber());
+                } else if (i == 3) {
+                    txt_info[i].setText(people.get(list.getSelectedIndex()).getAddress());
                 }
             }
+
+            save.setVisible(false);
+            clear.setVisible(false);
         });
+
+        //saveChanges.addActionListener();
 
         setVisible(true);
         list.setListData(people.toArray());
