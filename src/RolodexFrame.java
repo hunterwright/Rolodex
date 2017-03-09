@@ -13,7 +13,7 @@ public class RolodexFrame extends JFrame {
     JButton clear = new JButton("New");
 
     JButton saveChanges = new JButton("Save Changes");
-    JButton deleteChanges = new JButton("Delete Changes");
+    JButton delete = new JButton("Delete Contact");
 
     ArrayList<Person> people = new ArrayList<>();
 
@@ -67,13 +67,13 @@ public class RolodexFrame extends JFrame {
         clear.setBounds(510, 250, 150, 35);
         add(clear);
 
-        saveChanges.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-        save.setBounds(350, 250, 150, 35);
-        add(save);
+        saveChanges.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        saveChanges.setBounds(350, 250, 150, 35);
+        add(saveChanges);
 
-        clear.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-        clear.setBounds(510, 250, 150, 35);
-        add(clear);
+        delete.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        delete.setBounds(510, 250, 150, 35);
+        add(delete);
 
         list.setListData(people.toArray());
 
@@ -91,24 +91,59 @@ public class RolodexFrame extends JFrame {
             list.setListData(people.toArray());
         });
 
-        list.addListSelectionListener(e -> {
+        saveChanges.addActionListener(e -> {
+            list.clearSelection();
+
             for (int i = 0; i < txt_info.length; i++) {
-                if(i == 0) {
-                    txt_info[i].setText(people.get(list.getSelectedIndex()).getFirstName());
-                } else if (i == 1) {
-                    txt_info[i].setText(people.get(list.getSelectedIndex()).getLastName());
-                } else if (i == 2) {
-                    txt_info[i].setText(people.get(list.getSelectedIndex()).getPhoneNumber());
-                } else if (i == 3) {
-                    txt_info[i].setText(people.get(list.getSelectedIndex()).getAddress());
-                }
+                txt_info[i].setText("");
             }
 
-            save.setVisible(false);
-            clear.setVisible(false);
+            save.setVisible(true);
+            clear.setVisible(true);
+
+            saveChanges.setVisible(false);
+            delete.setVisible(false);
         });
 
-        //saveChanges.addActionListener();
+        list.addListSelectionListener(e -> {
+            if (list.getSelectedIndex() != -1) {
+                for (int i = 0; i < txt_info.length; i++) {
+                    if (i == 0) {
+                        txt_info[i].setText(people.get(list.getSelectedIndex()).getFirstName());
+                    } else if (i == 1) {
+                        txt_info[i].setText(people.get(list.getSelectedIndex()).getLastName());
+                    } else if (i == 2) {
+                        txt_info[i].setText(people.get(list.getSelectedIndex()).getPhoneNumber());
+                    } else if (i == 3) {
+                        txt_info[i].setText(people.get(list.getSelectedIndex()).getAddress());
+                    }
+                }
+                save.setVisible(false);
+                clear.setVisible(false);
+
+                saveChanges.setVisible(true);
+                delete.setVisible(true);
+            }
+
+
+        });
+
+        delete.addActionListener(e -> {
+            if (list.getSelectedIndex() != -1) {
+                for (int i = 0; i < txt_info.length; i++) {
+                    txt_info[i].setText("");
+                }
+
+                save.setVisible(true);
+                clear.setVisible(true);
+
+                saveChanges.setVisible(false);
+                delete.setVisible(false);
+
+                people.remove(list.getSelectedIndex());
+            }
+            list.setListData(people.toArray());
+        });
 
         setVisible(true);
         list.setListData(people.toArray());
