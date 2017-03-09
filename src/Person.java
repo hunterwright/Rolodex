@@ -1,7 +1,9 @@
+import java.util.Comparator;
+
 /**
  * Stores first name ,last name, addrsess, and phone number of contacts,
  */
-public class Person {
+public class Person implements Comparable {
     private String firstName = "";
     private String lastName = "";
     private String phoneNumber = "";
@@ -48,5 +50,17 @@ public class Person {
 
     public String toString() {
         return lastName + "," + firstName;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof Person) {
+            if (!this.lastName.equals(((Person) o).lastName)) {
+                return this.lastName.compareTo(((Person) o).lastName);
+            } else {
+                return this.firstName.compareTo(((Person) o).firstName);
+            }
+        }
+        throw new UnsupportedOperationException("Cannot compare :p");
     }
 }

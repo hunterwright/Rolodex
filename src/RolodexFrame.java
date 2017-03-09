@@ -88,6 +88,8 @@ public class RolodexFrame extends JFrame {
                 txt_info[i].setText("");
             }
 
+            people.sort(null);
+
             list.setListData(people.toArray());
         });
 
@@ -143,6 +145,12 @@ public class RolodexFrame extends JFrame {
                 people.remove(list.getSelectedIndex());
             }
             list.setListData(people.toArray());
+        });
+
+        clear.addActionListener(e -> {
+            for (int i = 0; i < txt_info.length; i++) {
+                txt_info[i].setText("");
+            }
         });
 
         setVisible(true);
