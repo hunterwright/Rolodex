@@ -18,6 +18,7 @@ public class RolodexFrame extends JFrame {
     ArrayList<Person> people = new ArrayList<>();
 
     JList list = new JList<Person>();
+    JScrollPane scroll = new JScrollPane(list);
 
     public RolodexFrame() {
         // FRAME SETUP -----------------------------------------
@@ -77,8 +78,9 @@ public class RolodexFrame extends JFrame {
 
         list.setListData(people.toArray());
 
-        list.setBounds(0, 0, 250, getHeight());
-        add(list);
+        list.setBounds(0, 0, 250, getHeight()-25);
+        scroll.setBounds(0, 0, 250, getHeight()-25);
+        add(scroll);
 
         save.addActionListener(e -> {
             people.add(new Person(txt_info[0].getText(), txt_info[1].getText(),
