@@ -78,8 +78,8 @@ public class RolodexFrame extends JFrame {
 
         list.setListData(people.toArray());
 
-        list.setBounds(0, 0, 250, getHeight()-25);
-        scroll.setBounds(0, 0, 250, getHeight()-25);
+        list.setBounds(0, 0, 250, getHeight() - 25);
+        scroll.setBounds(0, 0, 250, getHeight() - 25);
         add(scroll);
 
         save.addActionListener(e -> {
@@ -96,7 +96,17 @@ public class RolodexFrame extends JFrame {
         });
 
         saveChanges.addActionListener(e -> {
-            list.clearSelection();
+            for (int i = 0; i < txt_info.length; i++) {
+                if(i == 0) {
+                    people.get(list.getSelectedIndex()).setFirstName(txt_info[i].getText());
+                } else if(i == 1) {
+                    people.get(list.getSelectedIndex()).setLastName(txt_info[i].getText());
+                } else if(i == 2) {
+                    people.get(list.getSelectedIndex()).setPhoneNumber(txt_info[i].getText());
+                } else if(i == 3) {
+                    people.get(list.getSelectedIndex()).setAddress(txt_info[i].getText());
+                }
+            }
 
             for (int i = 0; i < txt_info.length; i++) {
                 txt_info[i].setText("");
@@ -107,6 +117,12 @@ public class RolodexFrame extends JFrame {
 
             saveChanges.setVisible(false);
             delete.setVisible(false);
+
+            list.clearSelection();
+
+            people.sort(null);
+
+            list.setListData(people.toArray());
         });
 
         list.addListSelectionListener(e -> {
